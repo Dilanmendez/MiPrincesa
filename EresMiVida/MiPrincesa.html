@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Nuestra Historia 💖</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI', sans-serif;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+.container{
+    background:rgba(255,255,255,0.15);
+    padding:30px;
+    border-radius:25px;
+    width:90%;
+    max-width:500px;
+    text-align:center;
+    animation:fade 1.5s ease;
+}
+
+h1{
+    margin-bottom:15px;
+}
+
+p{
+    font-size:18px;
+    min-height:70px;
+}
+
+.options button{
+    display:block;
+    width:100%;
+    margin:10px 0;
+    padding:12px;
+    font-size:16px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    background:#ff4d6d;
+    color:white;
+    transition:0.3s;
+}
+
+.options button:hover{
+    background:#e63950;
+    transform:scale(1.03);
+}
+
+.final{
+    display:none;
+}
+
+video{
+    width:100%;
+    border-radius:15px;
+    margin-top:15px;
+}
+
+@keyframes fade{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>💖 Nuestra historia 💖</h1>
+    <p id="text">
+        Todo comenzó el día que te vi… ¿qué sentí?
+    </p>
+
+    <div class="options" id="options">
+        <button onclick="next(1)">Nervios y sonrisas 😊</button>
+        <button onclick="next(2)">Paz y emoción 💫</button>
+        <button onclick="next(3)">Que eras mi destino ❤️</button>
+    </div>
+
+    <div class="final" id="final">
+        <h2>💞 No fue un sueño 💞</h2>
+        <p>
+            Cada elección nos trajo hasta aquí.
+            Elegirte es lo más bonito que he hecho.
+            Te amo hoy y siempre.
+        </p>
+
+        <video controls>
+            <source src="nuestro_video.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+<script>
+let step = 0;
+
+const story = [
+    {
+        text:"Desde ese día supe que algo especial estaba pasando… ¿qué hice?",
+        options:[
+            "Pensé en ti todo el día 💭",
+            "Sonreí sin razón 😍",
+            "Quise verte otra vez ❤️"
+        ]
+    },
+    {
+        text:"Con el tiempo entendí que amarte era fácil… porque tú eres:",
+        options:[
+            "Mi lugar seguro 🏡",
+            "Mi mejor casualidad ✨",
+            "Mi amor verdadero 💖"
+        ]
+    }
+];
+
+function next(choice){
+    if(step < story.length){
+        document.getElementById("text").innerText = story[step].text;
+        const btns = document.querySelectorAll(".options button");
+        btns.forEach((btn,i)=>{
+            btn.innerText = story[step].options[i];
+        });
+        step++;
+    } else {
+        document.getElementById("options").style.display="none";
+        document.getElementById("text").style.display="none";
+        document.getElementById("final").style.display="block";
+    }
+}
+</script>
+
+</body>
+</html>
